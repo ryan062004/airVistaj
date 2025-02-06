@@ -1,0 +1,35 @@
+# Python
+*.pyc
+*.pyo
+__pycache__
+*.db
+*.sqlite3
+
+# Virtual environment
+venv/
+env/
+*.env
+
+# Django static and media files
+static/
+media/
+
+# IDEs and text editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Log files
+*.log
+
+# Configuration files
+*.pot
+*.pyc
+
+# Django secrets
+*.env
+
+# MySQL
+*.sql

@@ -1,0 +1,12 @@
+/*FOOTER STARTS*/
+
+footer {
+    margin-top: auto;
+    background: rgb(84,0,0);
+    background: linear-gradient(360deg, rgba(84,0,0,1) 13%, rgba(156,4,4,1) 80%);    
+    padding: 20px 10px;
+    min-height: 80px;
+    border-top: 6px solid goldenrod;
+    color: white;
+}
+/*FOOTER ENDS*/

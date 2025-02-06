@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <h2>Admin Dashboard</h2>
+  <h3>Pending Applications</h3>
+  <ul>
+    {% for profile in profiles %}
+      <li>{{ profile.user.username }} - {{ profile.rank }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

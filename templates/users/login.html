@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>Welcome Back</h2>
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+            <div class="errorlist">{{ field.errors }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="auth-button">Login</button>
+    </form>
+    <div class="auth-links">
+        <p>Not a Vistaj member? <a href="{% url 'register' %}" class="auth-link">Register here</a></p>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/users/auth.css' %}">
+
+{% endblock %}

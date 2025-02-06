@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Membership Application{% endblock %}
+
+{% block content %}
+    <h2>Welcome to the Membership Application Process, {{ user.username }}!</h2>
+    <p>Please follow the steps below to complete your membership:</p>
+
+    {% if step == 1 %}
+        <h3>Step 1: Submit your Infinite Flight Account Details</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+
+    {% elif step == 2 %}
+        <h3>Step 2: Take the Membership Test</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Test</button>
+        </form>
+
+    {% elif step == 3 %}
+        <h3>Step 3: Submit your Flight Replay (Practical Test)</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Replay</button>
+        </form>
+
+    {% else %}
+        <h3>Your membership application is complete!</h3>
+        <p>Congratulations, you're now a First Officer!</p>
+    {% endif %}
+{% endblock %}

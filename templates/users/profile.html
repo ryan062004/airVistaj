@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{% block content %}
+<h1>Your Profile</h1>
+{% if request.user.profile.profile_picture %}
+    <img src="{{ request.user.profile.profile_picture.url }}" alt="Profile Picture" width="150" id="profile_picture">
+{% else %}
+    <span>No profile picture available</span> <!-- Or a placeholder image -->
+{% endif %}
+
+<!-- Display a form to update the profile picture -->
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update Profile Picture</button>
+</form>
+
+<!--DELETE ACCOUNT STARTS-->
+
+<!-- Delete Account Button -->
+{% if not user.is_superuser %}
+    <button type="button" class="btn btn-danger" onclick="openModal()">
+        Delete Account
+    </button>
+{% endif %}
+
+
+<!-- Hidden Form for Account Deletion -->
+<form method="post" action="{% url 'delete_account' %}" id="deleteForm" style="display: none;">
+    {% csrf_token %}
+</form>
+
+<!-- Custom Modal -->
+<div id="customModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2>Confirm Account Deletion</h2>
+        <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+    </div>
+</div>
+
+<!-- Link to External JavaScript -->
+<script src="{% static 'js/users/profile.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/users/profile.css' %}">
+
+<!--DELETE ACCOUNT ENDS-->
+
+{% endblock %}

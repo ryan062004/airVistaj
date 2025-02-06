@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="chat-container">
+    <div id="chat-box" class="message-container"></div>
+    <div class="input-group">
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button id="send-button" class="btn-send">Send</button>
+    </div>
+</div>
+
+<!-- Initialize config before loading external JS -->
+<script>
+    // Pass Django context to JavaScript
+    window.CHAT_CONFIG = {
+        username: "{{ request.user.username|default:'Anonymous' }}",
+        wsPath: "ws://{{ request.get_host }}/ws/chat/"
+    };
+</script>
+
+<!-- External JS -->
+<script src="{% static 'js/chat/chat.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/chat/chat.css' %}">
+{% endblock %}

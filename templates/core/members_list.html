@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Members List{% endblock %}
+
+{% block content %}
+<h2>The Vistaj Crew</h2>
+
+<h3>Staff Members</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th>Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in staff_members %}
+            <tr>
+                <td>{{ member.role }}</td>
+                <td>{{ member.username }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Pilots</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Rank</th>
+            <th>Member Since</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in regular_pilots %}
+            <tr>
+                <td>{{ member.username }}</td>
+                <td>{{ member.rank }}</td>
+                <td>{{ member.member_since }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">No regular pilots available.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

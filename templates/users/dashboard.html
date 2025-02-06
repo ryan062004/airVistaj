@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Welcome to Your Dashboard, {{ user.username }}!</h2>
+    <p>This is your personalized dashboard.</p>
+
+<!--
+    {% if user_profile.rank == 'Membership Pending' %}
+        <h3>Your membership application is still pending.</h3>
+        <p>Click the link below to complete the membership process:</p>
+        <a href="{% url 'membership_application' %}">Start Membership Process</a>
+    {% elif user_profile.rank == 'Cadet' %}
+        <h3>You're a Cadet! Good luck with the next steps.</h3>
+        <a href="{% url 'membership_application' %}">Apply for Second Officer</a>
+    {% elif user_profile.rank == 'Second Officer' %}
+        <h3>Congratulations, you've been accepted as a Second Officer!</h3>
+    {% elif user_profile.rank == 'First Officer' %}
+        <h3>You're a First Officer! Welcome aboard!</h3>
+    {% endif %}
+    
+    -->
+
+{% endblock %}

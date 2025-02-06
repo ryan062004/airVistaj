@@ -1,0 +1,107 @@
+/* Default Navbar Styles */
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 50px;
+    transition: transform 0.3s ease-in-out; /* Add transition for sliding effect */
+}
+
+li {
+    position: relative;
+    overflow: hidden;
+}
+
+li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+li a:hover,
+li a:focus {
+    color: goldenrod;
+}
+
+li:not(:has(img)):after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: goldenrod;
+    transition: width 0.3s ease-in-out;
+}
+
+li:hover::after {
+    width: 100%;
+}
+
+.active {
+    color: goldenrod;
+}
+
+/*PROFILE MENU*/
+
+.profile-icon {
+    width: 40px;  /* Adjust the width */
+    height: 40px;  /* Adjust the height */
+    border-radius: 50%;  /* Make it round (optional) */
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, border 0.3s ease;
+}
+
+.profile-item:hover .profile-icon {
+    transform: scale(1.25);
+    border: 2px solid goldenrod;
+}
+
+/* Animated Border */
+.profile-item {
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+
+.profile-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.profile-menu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.profile-menu a:hover {
+    color: #f1f1f1;
+}
+
+/* Open the menu */
+.profile-menu.open {
+    width: 250px;
+}
+
+@media (max-width: 600px) {
+    .profile-icon {
+        width: 30px;
+        height: 30px;
+    }
+}

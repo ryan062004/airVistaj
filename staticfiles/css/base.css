@@ -1,0 +1,48 @@
+/*DEFAULT STYLES*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/*HEADER AREA*/
+header {
+    background: rgb(84,0,0);
+    background: linear-gradient(360deg, rgba(84,0,0,1) 13%, rgba(156,4,4,1) 80%);
+    background-color: rgb(84,0,0); /* Fallback */
+    padding: 10px;
+    border-bottom: 6px solid goldenrod;
+}
+
+/*LOGO STARTS*/
+.logo {
+    height: 100px;
+    padding: 10px;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    transform-origin: center;
+    transition: all 0.5s ease-in-out;
+}
+
+/*HEADER ENDS*/
+
+.page-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+main {
+    margin: 10px;
+}

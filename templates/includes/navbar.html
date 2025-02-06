@@ -1,0 +1,58 @@
+{%load static%}
+
+<nav>
+    <ul>
+        <!--CORE PAGES-->
+        <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+        <li> <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+        <li> <a href="{% url 'members' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">Our Members</a></li>
+
+        <!--USER PAGES-->
+
+        {% if user.is_authenticated %}
+
+        <!-- Profile icon (Profile picture) -->
+   
+        <li class="profile-item">
+            <a href="javascript:void(0);" onclick="openProfileMenu()">
+                <img 
+                src="{% if user.profile.profile_picture %}
+                    {{ user.profile.profile_picture.url }}
+                {% else %}
+                    {% static 'images/default_profile_picture.jpg' %}
+                {% endif %}"
+                alt="Profile"
+                class="profile-icon">
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'chat' %}" 
+               class="{% if request.resolver_match.url_name == 'chat' %}active{% endif %}">
+               Chat
+            </a>
+        </li>
+
+        {% else %}
+            <li><a href="{% url 'login' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}">Login</a></li>
+            <li><a href="{% url 'register' %}" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">Join</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<!--PROFILE MENU-->
+
+<div id="profileMenu" class="profile-menu">
+    <a href="{% url 'profile' %}">Profile</a>
+    {% if user.is_staff %}
+        <!-- Admin-specific navigation -->
+        <li><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
+    {% else %}
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+    {% endif %}
+    <a href="{% url 'home' %}">Settings</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</div>
+
+
+<link rel="stylesheet" href="{% static 'css/includes/navbar.css' %}">
+<script src="{% static 'js/includes/navbar.js' %}"></script>
