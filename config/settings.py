@@ -1,6 +1,8 @@
 from storages.backends.s3boto3 import S3Boto3Storage
 from pathlib import Path
 from dotenv import load_dotenv
+from django.core.exceptions import ImproperlyConfigured
+
 import os
 
 load_dotenv()
@@ -52,6 +54,11 @@ MIDDLEWARE = [
 
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'https://airvistaj.onrender.com',
+]
+
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -73,11 +80,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 ASGI_APPLICATION = 'config.asgi.application'
 
+REDIS_URL = os.getenv("REDIS_URL")
+if not REDIS_URL:
+    raise ImproperlyConfigured("Redis URL is not set in environment variables")
+
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [(REDIS_URL, 6379)],
+        },
     },
 }
+
+
 
 DATABASES = {
     'default': {
