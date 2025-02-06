@@ -4,17 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const sendButton = document.getElementById('send-button');
     
     // Correct WebSocket URL based on the protocol
-    let socketUrl;
 
-    if (window.location.protocol === "https:") {
-        // Use WSS (WebSocket Secure) in production (HTTPS)
-        socketUrl = "wss://airvistaj.onrender.com/ws/chat/";
-    } else {
-        // Use WS (WebSocket) in development (HTTP)
-        socketUrl = "ws://airvistaj.onrender.com/ws/chat/";
-    }
-
-    const socket = new WebSocket(socketUrl);
+    const socket = new WebSocket("wss://airvistaj.onrender.com/ws/chat/");
 
     // Connection status indicators
     const connectionStatus = document.createElement('div');
