@@ -3,7 +3,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const messageInput = document.getElementById('message-input');
     const sendButton = document.getElementById('send-button');
     
-    const socket = new WebSocket(window.CHAT_CONFIG.wsPath);
+    // Correct WebSocket URL based on the protocol
+    let socketUrl;
+
+    if (window.location.protocol === "https:") {
+        // Use WSS (WebSocket Secure) in production (HTTPS)
+        socketUrl = "wss://airvistaj.onrender.com/ws/chat/";
+    } else {
+        // Use WS (WebSocket) in development (HTTP)
+        socketUrl = "ws://airvistaj.onrender.com/ws/chat/";
+    }
+
+    const socket = new WebSocket(socketUrl);
 
     // Connection status indicators
     const connectionStatus = document.createElement('div');
